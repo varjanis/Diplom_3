@@ -1,4 +1,5 @@
 from pages.forgot_password_page import ForgotPasswordPage
+from pages.login_page import LoginPage
 import datafile
 import allure
 
@@ -8,8 +9,9 @@ class TestForgotPasswordPage:
     @allure.title('Проверка: переход на страницу восстановления пароля по кнопке «Восстановить пароль»')
     def test_redirect_to_forgot_password_page_via_forgot_password_button_success(self, driver):
         password_page = ForgotPasswordPage(driver)
+        login_page = LoginPage(driver)
 
-        password_page.open_login_page()
+        login_page.open_login_page()
         password_page.wait_until_forgot_password_link_is_clickable()
         password_page.click_forgot_password_link()
 
@@ -19,10 +21,11 @@ class TestForgotPasswordPage:
     @allure.title('Проверка: ввод почты и клик по кнопке "Восстановить"')
     def test_enter_email_and_press_forgot_password_button_success(self, driver, setup_user):
         password_page = ForgotPasswordPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        password_page.open_login_page()
+        login_page.open_login_page()
         password_page.wait_until_forgot_password_link_is_clickable()
         password_page.click_forgot_password_link()
         password_page.wait_until_revoke_button_is_clickable()
@@ -37,10 +40,11 @@ class TestForgotPasswordPage:
     @allure.title('Проверка: клик по кнопке показать/скрыть пароль делает поле активным — подсвечивает его')
     def test_click_on_eye_in_password_field_makes_it_active_success(self, driver, setup_user):
         password_page = ForgotPasswordPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        password_page.open_login_page()
+        login_page.open_login_page()
         password_page.wait_until_forgot_password_link_is_clickable()
         password_page.click_forgot_password_link()
         password_page.wait_until_revoke_button_is_clickable()

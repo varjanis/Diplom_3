@@ -1,20 +1,26 @@
 from pages.feed_page import FeedPage
+from pages.login_page import LoginPage
+from pages.order_page import OrderPage
 import allure
 
 
 class TestFeedPage:
+
     @allure.title('Проверка: если кликнуть на заказ, откроется всплывающее окно с деталями')
     def test_order_clicked_popup_opens_success(self, driver, setup_user):
         feed = FeedPage(driver)
+        login_page = LoginPage(driver)
+        order_page = OrderPage(driver)
 
         login, password = setup_user
 
-        feed.open_login_page()
-        feed.wait_until_email_field_is_visible()
-        feed.fill_in_login(login)
-        feed.fill_in_password(password)
-        feed.click_login_button()
-        feed.wait_until_order_button_is_visible()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
+        order_page.wait_until_order_button_is_visible()
         feed.open_feed()
         feed.wait_until_feed_header_is_visible()
         feed.open_most_recent_order_popup()
@@ -25,15 +31,18 @@ class TestFeedPage:
     @allure.title('Проверка: заказы пользователя из разд. «История заказов» отображаются на странице «Лента заказов»')
     def test_users_order_visible_in_feed_success(self, driver, setup_user):
         feed = FeedPage(driver)
+        login_page = LoginPage(driver)
+        order_page = OrderPage(driver)
 
         login, password = setup_user
 
-        feed.open_login_page()
-        feed.wait_until_email_field_is_visible()
-        feed.fill_in_login(login)
-        feed.fill_in_password(password)
-        feed.click_login_button()
-        feed.wait_until_order_button_is_visible()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
+        order_page.wait_until_order_button_is_visible()
 
         feed.drag_and_drop_fluorescent_bun()
         feed.click_order_button()
@@ -50,15 +59,18 @@ class TestFeedPage:
     @allure.title('Проверка: после оформления заказа его номер появляется в разделе В работе')
     def test_users_order_number_visible_in_in_progress_section_success(self, driver, setup_user):
         feed = FeedPage(driver)
+        login_page = LoginPage(driver)
+        order_page = OrderPage(driver)
 
         login, password = setup_user
 
-        feed.open_login_page()
-        feed.wait_until_email_field_is_visible()
-        feed.fill_in_login(login)
-        feed.fill_in_password(password)
-        feed.click_login_button()
-        feed.wait_until_order_button_is_visible()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
+        order_page.wait_until_order_button_is_visible()
         feed.drag_and_drop_fluorescent_bun()
         feed.click_order_button()
         feed.wait_until_successful_order_text_is_visible()
@@ -74,20 +86,23 @@ class TestFeedPage:
     @allure.title('Проверка: при создании нового заказа счётчик Выполнено за всё время увеличивается')
     def test_new_order_created_all_orders_counter_increases_success(self, driver, setup_user):
         feed = FeedPage(driver)
+        login_page = LoginPage(driver)
+        order_page = OrderPage(driver)
 
         login, password = setup_user
 
-        feed.open_login_page()
-        feed.wait_until_email_field_is_visible()
-        feed.fill_in_login(login)
-        feed.fill_in_password(password)
-        feed.click_login_button()
-        feed.wait_until_order_button_is_visible()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
+        order_page.wait_until_order_button_is_visible()
 
         feed.open_feed()
         feed.wait_for_list_of_ready_orders()
         total_orders_number_before = feed.get_total_orders_number()
-        feed.click_constructor_button()
+        order_page.click_constructor_button()
         feed.drag_and_drop_fluorescent_bun()
         feed.click_order_button()
         feed.wait_until_popup_cross_is_clickable()
@@ -103,20 +118,23 @@ class TestFeedPage:
     @allure.title('Проверка: при создании нового заказа счётчик Выполнено за сегодня увеличивается')
     def test_new_order_created_all_orders_counter_increases_success(self, driver, setup_user):
         feed = FeedPage(driver)
+        login_page = LoginPage(driver)
+        order_page = OrderPage(driver)
 
         login, password = setup_user
 
-        feed.open_login_page()
-        feed.wait_until_email_field_is_visible()
-        feed.fill_in_login(login)
-        feed.fill_in_password(password)
-        feed.click_login_button()
-        feed.wait_until_order_button_is_visible()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
+        order_page.wait_until_order_button_is_visible()
 
         feed.open_feed()
         feed.wait_for_list_of_ready_orders()
         today_orders_number_before = feed.get_today_orders_number()
-        feed.click_constructor_button()
+        order_page.click_constructor_button()
         feed.drag_and_drop_fluorescent_bun()
         feed.click_order_button()
         feed.wait_until_popup_cross_is_clickable()

@@ -9,7 +9,6 @@ class ProfilePage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
-
     @allure.step('Дождаться, когда будет видена кнопка История заказов')
     def wait_until_order_history_button_is_clickable(self):
         return self.wait_until_element_is_clickable(Locators.locator_profile_page_order_history_button)

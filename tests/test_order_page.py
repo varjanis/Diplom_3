@@ -1,4 +1,5 @@
 from pages.order_page import OrderPage
+from pages.login_page import LoginPage
 import allure
 
 
@@ -7,15 +8,16 @@ class TestOrderPage:
     @allure.title('Проверка: переход по кнопке «Конструктор»')
     def test_redirect_via_constructor_button_success(self, driver, setup_user):
         order_page = OrderPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        order_page.open_login_page()
-        order_page.wait_until_email_field_is_visible()
-        order_page.fill_in_login(login)
-        order_page.fill_in_password(password)
-        order_page.wait_until_login_button_is_clickable()
-        order_page.click_login_button()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
 
         order_page.wait_until_profile_button_is_clickable()
         order_page.click_profile_button()
@@ -28,15 +30,16 @@ class TestOrderPage:
     @allure.title('Проверка: переход по кнопке «Лента заказов»')
     def test_redirect_via_order_feed_button_success(self, driver, setup_user):
         order_page = OrderPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        order_page.open_login_page()
-        order_page.wait_until_email_field_is_visible()
-        order_page.fill_in_login(login)
-        order_page.fill_in_password(password)
-        order_page.wait_until_login_button_is_clickable()
-        order_page.click_login_button()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
         order_page.wait_until_profile_button_is_clickable()
         order_page.click_profile_button()
         order_page.wait_until_feed_button_is_clickable()
@@ -48,15 +51,16 @@ class TestOrderPage:
     @allure.title('Проверка: если кликнуть на ингредиент, появится всплывающее окно с деталями')
     def test_ingredient_popup_appears_success(self, driver, setup_user):
         order_page = OrderPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        order_page.open_login_page()
-        order_page.wait_until_email_field_is_visible()
-        order_page.fill_in_login(login)
-        order_page.fill_in_password(password)
-        order_page.wait_until_login_button_is_clickable()
-        order_page.click_login_button()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
         order_page.wait_until_order_button_is_clickable()
         order_page.click_fluorescent_bun()
 
@@ -65,15 +69,16 @@ class TestOrderPage:
     @allure.title('Проверка: всплывающее окно закрывается кликом по крестику')
     def test_ingredient_popup_closes_success(self, driver, setup_user):
         order_page = OrderPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        order_page.open_login_page()
-        order_page.wait_until_email_field_is_visible()
-        order_page.fill_in_login(login)
-        order_page.fill_in_password(password)
-        order_page.wait_until_login_button_is_clickable()
-        order_page.click_login_button()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
         order_page.wait_until_fluorescent_bun_is_clickable()
         order_page.click_fluorescent_bun()
         order_page.wait_until_fluorescent_bun_popup_cross_is_clickable()
@@ -85,15 +90,16 @@ class TestOrderPage:
     @allure.title('Проверка: при добавлении ингредиента в заказ счётчик этого ингридиента увеличивается')
     def test_ingredient_added_counter_increases_success(self, driver, setup_user):
         order_page = OrderPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        order_page.open_login_page()
-        order_page.wait_until_email_field_is_visible()
-        order_page.fill_in_login(login)
-        order_page.fill_in_password(password)
-        order_page.wait_until_login_button_is_clickable()
-        order_page.click_login_button()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
         order_page.wait_until_order_button_is_clickable()
         order_page.drag_and_drop_fluorescent_bun()
 
@@ -102,15 +108,16 @@ class TestOrderPage:
     @allure.title('Проверка: залогиненный пользователь может оформить заказ')
     def test_logged_in_user_makes_order_success(self, driver, setup_user):
         order_page = OrderPage(driver)
+        login_page = LoginPage(driver)
 
         login, password = setup_user
 
-        order_page.open_login_page()
-        order_page.wait_until_email_field_is_visible()
-        order_page.fill_in_login(login)
-        order_page.fill_in_password(password)
-        order_page.wait_until_login_button_is_clickable()
-        order_page.click_login_button()
+        login_page.open_login_page()
+        login_page.wait_until_email_field_is_visible()
+        login_page.fill_in_login(login)
+        login_page.fill_in_password(password)
+        login_page.wait_until_login_button_is_clickable()
+        login_page.click_login_button()
         order_page.wait_until_order_button_is_clickable()
         order_page.drag_and_drop_fluorescent_bun()
         order_page.click_order_button()

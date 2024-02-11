@@ -9,6 +9,30 @@ class OrderPage(BasePage):
         super().__init__(driver)
         self.driver = driver
 
+    @allure.step('Кликнуть на кнопку Конструктор')
+    def click_constructor_button(self):
+        return self.click_element(Locators.locator_order_page_constructor_button)
+
+    @allure.step('Кликнуть на кнопку Личный кабинет')
+    def click_profile_button(self):
+        return self.click_element(Locators.locator_order_page_profile_button)
+
+    @allure.step('Дождаться, когда будет кликабельна кнопка Оформить заказ')
+    def wait_until_order_button_is_clickable(self):
+        return self.wait_until_element_is_clickable(Locators.locator_order_page_order_button)
+
+    @allure.step('Дождаться, когда будет кликабельна кнопка Конструктор')
+    def wait_until_constructor_button_is_clickable(self):
+        return self.wait_until_element_is_clickable(Locators.locator_order_page_constructor_button)
+
+    @allure.step('Дождаться, когда кнопка Личный кабинет будет кликабельна')
+    def wait_until_profile_button_is_clickable(self):
+        return self.wait_until_element_is_clickable(Locators.locator_order_page_profile_button)
+
+    @allure.step('Дождаться, когда будет видно кнопку Оформить заказ')
+    def wait_until_order_button_is_visible(self):
+        return self.wait_until_element_is_visible(Locators.locator_order_page_order_button)
+
     @allure.step('Убедиться, что кнопка Оформить заказ есть на странице')
     def check_if_order_button_is_on_page(self):
         return self.check_if_element_is_on_page(Locators.locator_order_page_order_button)

@@ -1,7 +1,5 @@
 from pages.base_page import BasePage
 from tests.locators import Locators
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions
 import allure
 
 
@@ -13,25 +11,7 @@ class FeedPage(BasePage):
 
     @allure.step('Дождаться, когда будет виден номер заказа')
     def wait_for_order_number(self):
-        WebDriverWait(self.driver, 30).until(expected_conditions.none_of(expected_conditions.text_to_be_present_in_element(
-                                                      Locators.locator_order_page_order_number, '9999')))
-
-
-
-        #return WebDriverWait(self.driver, 15).until(
-        #    expected_conditions.none_of(expected_conditions.text_to_be_present_in_element(
-           #                                           Locators.locator_order_page_order_number, '9999')))
-
-       # for i in range(1000):
-       #     if number == '09999':
-       #         number = self.find_page(Locators.locator_order_page_order_number).text
-       #     else:
-       #         break
-       # return number
-
-
-    #    WebDriverWait(self.driver, 20).until_not(expected_conditions.text_to_be_present_in_element(
-       #     Locators.locator_order_page_order_number, '09999'))
+        return self.wait_for_text_not_to_be_present(Locators.locator_order_page_order_number, '9999')
 
     @allure.step('Перетащить в заказ флуоресцентную булочку')
     def drag_and_drop_fluorescent_bun(self):
